@@ -32,6 +32,21 @@ class TokohView extends GetView<TokohController> {
             },
           ),
           Divider(color: Colors.grey),
+          ListTile(
+            leading: Icon(
+              Icons.home_work,
+              size: 40,
+            ),
+            title: Text('Toko Tani Timur'),
+            subtitle: Text('Manado'),
+            onTap: () {
+              // TODO: page Tokoh-baru
+
+              Get.toNamed(Routes.HALAMAN_TOKOH,
+                  arguments: 'Toko Petanian Makmur');
+            },
+          ),
+          Divider(color: Colors.grey),
         ],
       ),
       // ListView.builder(
