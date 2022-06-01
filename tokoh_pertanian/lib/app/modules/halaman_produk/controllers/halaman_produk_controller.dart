@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 class HalamanProdukController extends GetxController {
   //TODO: Implement HalamanProdukController
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -16,5 +15,4 @@ class HalamanProdukController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }

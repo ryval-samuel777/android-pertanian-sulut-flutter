@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/halaman_tokoh_controller.dart';
+import 'card_tokoh.dart';
 
 class HalamanTokohView extends GetView<HalamanTokohController> {
   @override
@@ -13,11 +14,15 @@ class HalamanTokohView extends GetView<HalamanTokohController> {
         backgroundColor: Colors.green,
         // centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'HalamanTokohView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: ListView(
+        children: [
+          SizedBox(height: 10),
+          TokohView(),
+          Divider(
+            color: Colors.grey,
+          ),
+          ProductCardView(),
+        ],
       ),
     );
   }

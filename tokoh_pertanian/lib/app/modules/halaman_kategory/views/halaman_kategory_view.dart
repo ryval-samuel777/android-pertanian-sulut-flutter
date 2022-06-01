@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/halaman_kategory_controller.dart';
+import 'kategori_card_view.dart';
 
 class HalamanKategoryView extends GetView<HalamanKategoryController> {
   @override
@@ -13,11 +14,10 @@ class HalamanKategoryView extends GetView<HalamanKategoryController> {
         backgroundColor: Colors.green,
         // centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'HalamanKategoryView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: ListView(
+        children: [
+          ProductCardView(),
+        ],
       ),
     );
   }

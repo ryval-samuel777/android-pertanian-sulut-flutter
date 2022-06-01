@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "381239252567",
+    "project_id": "tokoh-android-sulut",
+    "storage_bucket": "tokoh-android-sulut.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381239252567:android:eb9bd207646a9d2fbe3512",
+        "android_client_info": {
+          "package_name": "com.tokoh.pertanian.sulut.tokoh_pertanian"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381239252567-h8bt2ffkenbs98kmdigbmpp6hlkku8tf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tokoh.pertanian.sulut.tokoh_pertanian",
+            "certificate_hash": "aafc3d79a62e11b3f2a33546e654b2276654e0ab"
+          }
+        },
+        {
+          "client_id": "381239252567-qopf5kke5t1j13e0ipuolm94n58jvil6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9HyKxtFvyLcRMkfnaepDgJL3_moaCerw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381239252567-qopf5kke5t1j13e0ipuolm94n58jvil6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

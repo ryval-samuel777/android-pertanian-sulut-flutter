@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/halaman_produk_controller.dart';
+import 'halaman_card.dart';
+
+import 'desc_product.dart';
 
 class HalamanProdukView extends GetView<HalamanProdukController> {
   @override
@@ -13,11 +16,16 @@ class HalamanProdukView extends GetView<HalamanProdukController> {
         backgroundColor: Colors.green,
         // centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'HalamanProdukView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: ListView(
+        children: [
+          SizedBox(height: 10),
+          ProductCardView(),
+          TokohView(),
+          Divider(
+            color: Colors.grey,
+          ),
+          DescProduct(),
+        ],
       ),
     );
   }
