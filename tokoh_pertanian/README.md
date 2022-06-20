@@ -1,9 +1,9 @@
-# Toko Pertanian Sulut 
+## Toko Pertanian Sulut 
 
 Aplikasi toko android ini dibangun menggunakan flutter dan getx pattern 
 
 
-# team 
+## About Developers 
 Aplikasi dibangun oleh 6 anggota team dengan perannya masing masing 
 - Ryval Samuel (software engineer) 
 - Angella Languju (lead author paper)
