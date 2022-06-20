@@ -1,66 +1,48 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:tokoh_pertanian/app/routes/app_pages.dart';
+import '../controllers/product_card_view_controller.dart';
 
-class ProductCardView extends GetView {
+class ProductCardView extends GetView<ProductCardViewController> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.72,
-      child: ListView(
-        children: [
-          ProductCard(
-            title: 'Bibit Salak',
-            lokasi: 'manado',
-            harga: 'Rp. 10.000',
-            tokoh: 'maju bersama',
-            urlGambar:
-                'https://i.pinimg.com/564x/ba/16/2a/ba162a95b6612d38e8d754e4f769c027.jpg',
-          ),
-          ProductCard(
-            title: 'Bibit Jagung',
-            lokasi: 'tomohon',
-            harga: 'Rp. 10.000',
-            tokoh: 'maju bersama',
-            urlGambar:
-                'https://1.bp.blogspot.com/_hEXdwO68LsU/TIb8PV8j4mI/AAAAAAAAAMA/zDaNUm8oPDc/s1600/DSCN6221.JPG',
-          ),
-          ProductCard(
-            title: 'Bibit Cabai',
-            lokasi: 'Minahasa',
-            harga: 'Rp. 10.000',
-            tokoh: 'maju bersama',
-            urlGambar:
-                'https://s1.bukalapak.com/img/1420093611/w-1000/Isi_50_Bibit_Benih_Tanaman_Cabe_Cabai_Rawit_Pelita_F1.jpg',
-          ),
-          ProductCard(
-            title: 'Bibit  Terong',
-            lokasi: 'sulut',
-            harga: 'Rp. 10.000',
-            tokoh: 'maju bersama',
-            urlGambar:
-                'https://s1.bukalapak.com/img/67569300401/s-1000-1000/2019_05_15T14_59_14_07_00.jpg',
-          ),
-          ProductCard(
-            title: 'Bibit Sawi',
-            lokasi: 'sulut',
-            harga: 'Rp. 10.000',
-            tokoh: 'maju bersama',
-            urlGambar:
-                'https://i.pinimg.com/originals/90/55/76/90557636dd9b31108876d9c99cd2c042.jpg',
-          ),
-          ProductCard(
-            title: 'Bibit Kangkung',
-            lokasi: 'sulut',
-            harga: 'Rp. 10.000',
-            tokoh: 'maju bersama',
-            urlGambar:
-                'https://s1.bukalapak.com/img/1216029901/w-1000/__Isi_250_____Bibit_Benih_Tanaman_Hidroponik_Kangkung_Bangko.jpg',
-          ),
-        ],
-      ),
-    );
+    return FutureBuilder<QuerySnapshot<Object?>>(
+        future: controller.getData(),
+        builder: (context, snapshot) {
+          late var listProduk = snapshot.data!.docs;
+
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Container(
+              height: MediaQuery.of(context).size.height * 0.72,
+              child: ListView.builder(
+                  itemCount: listProduk.length,
+                  itemBuilder: (context, index) => ProductCard(
+                        title: "${(listProduk[index].data() as Map<String, dynamic>)['nama']}" !=
+                                ""
+                            ? "${(listProduk[index].data() as Map<String, dynamic>)['nama']}"
+                            : "Tidak bisa memuat data",
+                        lokasi: '${(listProduk[index].data() as Map<String, dynamic>)['domisili']}' !=
+                                ""
+                            ? "${(listProduk[index].data() as Map<String, dynamic>)['domisili']}"
+                            : "tidak ada data",
+                        harga: '${(listProduk[index].data() as Map<String, dynamic>)['harga']}' !=
+                                ""
+                            ? "${(listProduk[index].data() as Map<String, dynamic>)['harga']}"
+                            : "Tidak ada data",
+                        urlGambar: '${(listProduk[index].data() as Map<String, dynamic>)['gambar']}' !=
+                                ''
+                            ? '${(listProduk[index].data() as Map<String, dynamic>)['gambar']}'
+                            : 'https://discussions.apple.com/content/attachment/660042040',
+                        id: '${(listProduk[index].id)}',
+                      )),
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        });
   }
 }
 
@@ -68,23 +50,24 @@ class ProductCard extends StatelessWidget {
   final String title;
   final String lokasi;
   final String harga;
-  final String tokoh;
+
   final String urlGambar;
+  final String id;
 
   const ProductCard(
       {Key? key,
       required this.title,
       required this.lokasi,
       required this.harga,
-      required this.tokoh,
-      required this.urlGambar})
+      required this.urlGambar,
+      required this.id})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed(Routes.HALAMAN_PRODUK, arguments: title);
+        Get.toNamed(Routes.HALAMAN_PRODUK, arguments: id);
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),

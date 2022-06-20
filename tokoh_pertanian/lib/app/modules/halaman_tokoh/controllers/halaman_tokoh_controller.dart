@@ -1,20 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class HalamanTokohController extends GetxController {
-  //TODO: Implement HalamanTokohController
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  Future<QuerySnapshot<Object?>> getData(String toko) async {
+    CollectionReference produkKategori = firestore.collection('TokoPertanian');
+
+    return produkKategori.where('toko', isEqualTo: toko).get();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }

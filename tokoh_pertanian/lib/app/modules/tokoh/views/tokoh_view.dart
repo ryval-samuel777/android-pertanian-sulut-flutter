@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -6,7 +7,7 @@ import 'package:tokoh_pertanian/app/routes/app_pages.dart';
 import '../controllers/tokoh_controller.dart';
 import 'list_tokoh_view.dart';
 
-class TokohView extends GetView<TokohController> {
+class TokohView extends GetView<TokoController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,46 +16,53 @@ class TokohView extends GetView<TokohController> {
         backgroundColor: Colors.green,
         // centerTitle: true,
       ),
-      body: ListView(
-        children: <Widget>[
-          ListTile(
-            leading: Icon(
-              Icons.home_work,
-              size: 40,
-            ),
-            title: Text('Toko Petanian Makmur'),
-            subtitle: Text('Manado'),
-            onTap: () {
-              // TODO: page Tokoh-baru
-
-              Get.toNamed(Routes.HALAMAN_TOKOH,
-                  arguments: 'Toko Petanian Makmur');
-            },
-          ),
-          Divider(color: Colors.grey),
-          ListTile(
-            leading: Icon(
-              Icons.home_work,
-              size: 40,
-            ),
-            title: Text('Toko Tani Timur'),
-            subtitle: Text('Manado'),
-            onTap: () {
-              // TODO: page Tokoh-baru
-
-              Get.toNamed(Routes.HALAMAN_TOKOH,
-                  arguments: 'Toko Petanian Makmur');
-            },
-          ),
-          Divider(color: Colors.grey),
-        ],
-      ),
-      // ListView.builder(
-      //   itemCount: controller.products.length,
-      //   itemBuilder: (context, index) {
-      //     return ListTokohView();
-      //   },
-      // )
+      body: FutureBuilder<QuerySnapshot<Object?>>(
+          future: controller.getData(Get.arguments),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              List listToko = snapshot.data!.docs;
+              return ListView.builder(
+                  itemCount: listToko.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.store,
+                              size: 50,
+                            ),
+                            title: Text(
+                              "${(listToko[index].data() as Map<String, dynamic>)['namaToko']}" !=
+                                      ""
+                                  ? "${(listToko[index].data() as Map<String, dynamic>)['namaToko']}"
+                                      .toUpperCase()
+                                  : "Tidak bisa memuat data",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Roboto',
+                              ),
+                            ),
+                            onTap: () {
+                              Get.toNamed(Routes.HALAMAN_TOKOH,
+                                  arguments:
+                                      '${(listToko[index].data() as Map<String, dynamic>)['namaToko']}');
+                            },
+                          ),
+                        ),
+                        Divider(
+                          color: Colors.grey,
+                        )
+                      ],
+                    );
+                  });
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
     );
   }
 }

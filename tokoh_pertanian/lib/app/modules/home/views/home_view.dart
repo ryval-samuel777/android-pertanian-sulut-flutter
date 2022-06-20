@@ -27,17 +27,13 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
       body: ListView(
+        // list disini untuk susunan widget yang ada dimulai dari appBar, Kategori, Produkcard, bottomNavigationBar
+        // dont touch with this
         children: [
           KategoriView(),
           ProductCardView(),
         ],
       ),
-      // body: Center(
-      //   child: Text(
-      //     'Belum ada Data :v bilek',
-      //     style: TextStyle(fontSize: 20),
-      //   ),
-      // ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
         iconSize: 25,
@@ -71,7 +67,7 @@ class HomeView extends GetView<HomeController> {
               Get.toNamed('/home');
               break;
             case 1:
-              Get.toNamed('/tokoh');
+              Get.toNamed('/tokoh', arguments: 'toko');
               break;
           }
         },

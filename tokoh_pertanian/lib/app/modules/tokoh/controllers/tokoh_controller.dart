@@ -1,20 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:tokoh_pertanian/app/data/models/product_model.dart';
 
-class TokohController extends GetxController {
-  //TODO: Implement TokohController
+class TokoController extends GetxController {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  var products = List<Product>.empty().obs;
-  @override
-  void onInit() {
-    super.onInit();
+  Future<QuerySnapshot<Object?>> getData(String toko) async {
+    CollectionReference tokoPe = firestore.collection('toko');
+
+    return tokoPe
+        .orderBy(
+          'namaToko',
+        )
+        .get();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
 }

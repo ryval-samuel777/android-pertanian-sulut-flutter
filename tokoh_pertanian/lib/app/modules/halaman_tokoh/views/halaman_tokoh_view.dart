@@ -17,7 +17,7 @@ class HalamanTokohView extends GetView<HalamanTokohController> {
       body: ListView(
         children: [
           SizedBox(height: 10),
-          TokohView(),
+          HeadView(),
           Divider(
             color: Colors.grey,
           ),

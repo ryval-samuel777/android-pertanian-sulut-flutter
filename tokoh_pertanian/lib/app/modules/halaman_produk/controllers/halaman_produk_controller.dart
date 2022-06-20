@@ -1,18 +1,12 @@
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HalamanProdukController extends GetxController {
-  //TODO: Implement HalamanProdukController
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  @override
-  void onInit() {
-    super.onInit();
+  Future<DocumentSnapshot<Object?>> getData(String docID) async {
+    DocumentReference docRef = firestore.collection('TokoPertanian').doc(docID);
+
+    return docRef.get();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
 }

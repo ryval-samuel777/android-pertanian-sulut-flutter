@@ -1,18 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class HalamanKategoryController extends GetxController {
-  //TODO: Implement HalamanKategoryController
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  @override
-  void onInit() {
-    super.onInit();
+  Future<QuerySnapshot<Object?>> getData(String kategori) async {
+    CollectionReference produkKategori = firestore.collection('TokoPertanian');
+
+    return produkKategori.where('kategori', isEqualTo: kategori).get();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
 }
