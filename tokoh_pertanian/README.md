@@ -1,16 +1,13 @@
-# tokoh_pertanian
+# Toko Pertanian Sulut 
 
-A new Flutter project.
+Aplikasi toko android ini dibangun menggunakan flutter dan getx pattern 
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# team 
+Aplikasi dibangun oleh 6 anggota team dengan perannya masing masing 
+- Ryval Samuel (software engineer) 
+- Angella Languju (lead author paper)
+- Calvin Wowiling (Co-Author paper)
+- Eiden Lukas (Co-Author paper)
+- Muhammad Haris A. Nurhamidin (database engineer)
+- Kirey Xaviera Paturusi (database engineer)
